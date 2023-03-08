@@ -25,16 +25,16 @@ CREATE TABLE Info (
 
 
 
-CREATE TABLE ActorFilm (
+CREATE TABLE ActorInfo (
     Id int PRIMARY KEY,
-    FilmId int FOREIGN KEY REFERENCES Film(Id),
-    ActorId int CONSTRAINT FK_ActorFilm_ActorId REFERENCES Actor(Id)
+    InfoId int FOREIGN KEY REFERENCES Info(Id),
+    ActorId int FOREIGN KEY REFERENCES Actor(Id)
 );
 
-CREATE TABLE FilmInfo (
+CREATE TABLE FilmActor (
     FilmId int,
-    InfoId int,
-    PRIMARY KEY (FilmId, InfoId),
+    ActorId int,
+    PRIMARY KEY (FilmId, ActorId),
     FOREIGN KEY (FilmId) REFERENCES Film(Id),
-    FOREIGN KEY (InfoId) REFERENCES Info(Id)
+    FOREIGN KEY (ActorId) REFERENCES Actor(Id)
 );
