@@ -1,38 +1,40 @@
-CREATE TABLE Film(
-
-Id int PRIMARY KEY,
-NameOfFilm varchar(30),
-DateOfRelease datetime
-
+CREATE TABLE Durationtype (
+    Id int PRIMARY KEY,
+    Duration varchar(30)
+);
+CREATE TABLE Film (
+    Id int PRIMARY KEY,
+    NameOfFilm varchar(30),
+    DateOfRelease datetime,
+    DurationtypeId int FOREIGN KEY REFERENCES Durationtype(Id)
 );
 
-CREATE TABLE Info(
-
-Id int PRIMARY KEY,
-NameOfParents  varchar(30),
-Height decimal(18,1)
-
+CREATE TABLE Actor (
+    Id int PRIMARY KEY,
+    Firstname varchar(30),
+    Lastname varchar(30),
+    Dateofbirth datetime
 );
 
-CREATE TABLE Durationtype(
-
-Id int PRIMARY KEY,
-Duration varchar(30)
+CREATE TABLE Info (
+    Id int PRIMARY KEY,
+    NameOfParents varchar(30),
+    Height decimal(18,1),
+    ActorId int FOREIGN KEY REFERENCES Actor(Id)
 );
 
 
-CREATE TABLE Actor(
 
-Id int PRIMARY KEY,
-Firstname varchar(30),
-Lastname varchar(30),
-Dateofbirth datetime
-
+CREATE TABLE ActorFilm (
+    Id int PRIMARY KEY,
+    FilmId int FOREIGN KEY REFERENCES Film(Id),
+    ActorId int CONSTRAINT FK_ActorFilm_ActorId REFERENCES Actor(Id)
 );
-CREATE TABLE ActorFilm(
 
-Id int PRIMARY KEY,
-FilmId INT FOREIGN KEY,
-ActorId INT FOREIGN KEY
-
+CREATE TABLE FilmInfo (
+    FilmId int,
+    InfoId int,
+    PRIMARY KEY (FilmId, InfoId),
+    FOREIGN KEY (FilmId) REFERENCES Film(Id),
+    FOREIGN KEY (InfoId) REFERENCES Info(Id)
 );
