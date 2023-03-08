@@ -55,3 +55,8 @@ FULL OUTER JOIN "People" ON Osijek.Id = People.Id
 SELECT Osijek.Id, Numberofpeopple, Firstname, Lastname
 FROM Osijek
 INNER JOIN People on Osijek.Id = People.Id;
+
+SELECT People.Firstname, COUNT(People.Id) as TotalPeople
+FROM Osijek
+INNER JOIN People ON Osijek.Id = People.Id
+GROUP BY People.Firstname;
