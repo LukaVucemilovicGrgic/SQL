@@ -33,4 +33,25 @@ WHERE "Firstname" ='Luka';
 
 
 SELECT * FROM "People"
-WHERE "Lastname" like '%ic' and "Firstname" like '%a';0;
+WHERE "Lastname" like '%ic' and "Firstname" like '%a';
+
+
+
+SELECT * FROM "Osijek"
+INNER JOIN "People" ON Osijek.Id = People.Id
+
+
+SELECT * FROM "Osijek"
+LEFT JOIN "People" ON Osijek.Id = People.Id
+
+
+SELECT * FROM "Osijek"
+RIGHT JOIN "People" ON Osijek.Id = People.Id
+
+
+SELECT * FROM "Osijek"
+FULL OUTER JOIN "People" ON Osijek.Id = People.Id
+
+SELECT Osijek.Id, Numberofpeopple, Firstname, Lastname
+FROM Osijek
+INNER JOIN People on Osijek.Id = People.Id;
