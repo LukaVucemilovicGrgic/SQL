@@ -1,0 +1,36 @@
+CREATE TABLE Osijek (
+    Id int PRIMARY KEY,
+    Numberofpeopple varchar(30)
+
+);
+CREATE TABLE People (
+    Id int PRIMARY KEY,
+    Firstname varchar(30),
+    Lastname varchar(30),
+    
+);
+
+
+INSERT INTO Osijek(Id,Numberofpeopple)
+VALUES (1, '1000'), (2, '327'), (3, '589'), (4, '500')
+
+
+
+INSERT INTO People(Id,Firstname, Lastname)
+VALUES (1, 'Marko', 'Maric' ), (2, 'Pero', 'Peric' ),
+		(3, 'Luka', 'Lukic' ), (4, 'Ivan', 'Ivkovic' );
+
+
+DELETE FROM"Osijek"
+WHERE "Numberofpeopple"=1000
+
+SELECT * FROM "Osijek"
+WHERE "Numberofpeopple" between 500 and 1000;
+
+UPDATE "People"
+SET "Firstname"='Jozo'
+WHERE "Firstname" ='Luka';
+
+
+SELECT * FROM "People"
+WHERE "Lastname" like '%ic' and "Firstname" like '%a';0;
