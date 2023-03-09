@@ -1,0 +1,51 @@
+CREATE TABLE Osijek (
+    Id int PRIMARY KEY,
+    Numberofpeopple int,
+	PeopleEmployed int,
+	PeopleUnEmployed int
+	   
+);
+CREATE TABLE People (
+    Id int PRIMARY KEY,
+    Firstname varchar(30),
+    Lastname varchar(30),
+	Born datetime,
+	Employed bit not null
+    
+);
+
+
+INSERT INTO Osijek (Id, Numberofpeopple, PeopleEmployed, PeopleUnEmployed)
+VALUES 
+(1, '200000','140000','60000'),
+(2, '189000','132300', '56700'),
+(3, '225000', '157500', '67500'),
+(4, '150000', '105000', '45000');
+
+
+
+INSERT INTO People (Id, Firstname, Lastname, Born, Employed)
+VALUES 
+(1, 'Marko', 'Maric', '1985-01-01', 1),
+(2, 'Pero', 'Peric', '1976-07-07', 0),
+(3, 'Luka', 'Lukic', '1994-01-07', 1),
+(4, 'Ivan', 'Ivkovic', '1966-07-01', 0);
+
+
+
+SELECT * FROM "People"
+
+SELECT * FROM "Osijek"
+
+SELECT LEN ('Ivkovic');
+SELECT LEFT('Ivkovic', 5);
+SELECT RIGHT('Ivkovic', 5);
+SELECT ABS();
+SELECT POWER(3,9);
+SELECT SQRT(144);
+SELECT CEILING(35.97);
+SELECT FLOOR(35.97);
+SELECT RAND();
+SELECT LOWER('mIhAeL');
+SELECT UPPER('BiOkOvO');
+SELECT SUBSTRING('Danas smo ucili bazu podataka.', 5,10);
