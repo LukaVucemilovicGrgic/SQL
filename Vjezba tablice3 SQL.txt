@@ -1,46 +1,59 @@
-CREATE TABLE Osijek (
+CREATE TABLE Cities (
     Id int PRIMARY KEY,
+	CityName varchar(30),
     Numberofpeopple int,
 	PeopleEmployed int,
-	PeopleUnEmployed int
+	PeopleUnEmployed int,
 	   
 );
 CREATE TABLE People (
     Id int PRIMARY KEY,
     Firstname varchar(30),
     Lastname varchar(30),
-	Born datetime,
-	Employed bit not null
+	Born date,
+	Employed bit not null,
+	CityName varchar(30)
     
 );
 
 
-INSERT INTO Osijek (Id, Numberofpeopple, PeopleEmployed, PeopleUnEmployed)
+INSERT INTO Cities (Id, CityName, Numberofpeopple, PeopleEmployed, PeopleUnEmployed)
 VALUES 
-(1, '200000','140000','60000'),
-(2, '189000','132300', '56700'),
-(3, '225000', '157500', '67500'),
-(4, '150000', '105000', '45000');
+(1, 'Osijek', '200000','140000','60000'),
+(2, 'Vukovar', '64000','42300', '21700'),
+(3, 'Zagreb', '1225000', '957500', '267500'),
+(4, 'Split', '550000', '405000', '145000');
 
 
 
-INSERT INTO People (Id, Firstname, Lastname, Born, Employed)
+INSERT INTO People (Id, Firstname, Lastname, Born, Employed, CityName)
 VALUES 
-(1, 'Marko', 'Maric', '1985-01-01', 1),
-(2, 'Pero', 'Peric', '1976-07-07', 0),
-(3, 'Luka', 'Lukic', '1994-01-07', 1),
-(4, 'Ivan', 'Ivkovic', '1966-07-01', 0);
+(1, 'Marko', 'Maric', '1985-01-01', 1, 'Split'),
+(2, 'Pero', 'Peric', '1976-07-07', 0, 'Zagreb'),
+(3, 'Luka', 'Lukic', '1994-01-07', 1, 'Vukovar'),
+(4, 'Ivan', 'Ivkovic', '1966-07-01', 0, 'Osijek'),
+(5, 'Matej', 'Matkovic', '1982-11-11', 1, 'Split'),
+(6, 'Marko', 'Marko', '1956-04-06', 0, 'Zagreb'),
+(7, 'Josip', 'Puskic', '1974-01-12', 1, 'Vukovar'),
+(8, 'Pero', 'Maric', '1996-02-11', 0, 'Osijek');
 
+
+CREATE VIEW PeopleByCity
+AS
+SELECT p.Firstname, p.Lastname, p.CityName
+FROM People p
+INNER JOIN Cities c ON c.CityName  = p.CityName
+WHERE c.CityName IN ('Split');
 
 
 SELECT * FROM "People"
 
-SELECT * FROM "Osijek"
+SELECT * FROM "Cities"
 
 SELECT LEN ('Ivkovic');
 SELECT LEFT('Ivkovic', 5);
 SELECT RIGHT('Ivkovic', 5);
-SELECT ABS();
+SELECT ABS(-5);
 SELECT POWER(3,9);
 SELECT SQRT(144);
 SELECT CEILING(35.97);
