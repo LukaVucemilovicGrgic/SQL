@@ -24,24 +24,10 @@ CREATE TABLE Info (
 );
 
 
-
-
-CREATE TABLE ActorInfo (
-    Id int PRIMARY KEY,
-    InfoId int FOREIGN KEY REFERENCES Info(Id),
-    ActorId int FOREIGN KEY REFERENCES Actor(Id)
-);
-
-CREATE TABLE FilmActor (
-    FilmId int,
-    ActorId int,
-    PRIMARY KEY (FilmId, ActorId),
-
 CREATE TABLE FilmActor (
 	Id int PRIMARY KEY,
     FilmId int,
     ActorId int,
-
     FOREIGN KEY (FilmId) REFERENCES Film(Id),
     FOREIGN KEY (ActorId) REFERENCES Actor(Id)
 );
