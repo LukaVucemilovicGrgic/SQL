@@ -20,8 +20,9 @@ CREATE TABLE Info (
     Id int PRIMARY KEY,
     NameOfParents varchar(30),
     Height decimal(18,1),
-    ActorId int FOREIGN KEY REFERENCES Actor(Id)
+    FOREIGN KEY (Id) REFERENCES Actor(Id)
 );
+
 
 
 
@@ -35,6 +36,12 @@ CREATE TABLE FilmActor (
     FilmId int,
     ActorId int,
     PRIMARY KEY (FilmId, ActorId),
+
+CREATE TABLE FilmActor (
+	Id int PRIMARY KEY,
+    FilmId int,
+    ActorId int,
+
     FOREIGN KEY (FilmId) REFERENCES Film(Id),
     FOREIGN KEY (ActorId) REFERENCES Actor(Id)
 );
