@@ -1,4 +1,4 @@
-CREATE TABLE Cities (
+CREATE TABLE City (
     Id int PRIMARY KEY,
 	CityName varchar(30),
     Numberofpeopple int,
@@ -6,18 +6,18 @@ CREATE TABLE Cities (
 	PeopleUnEmployed int,
 	   
 );
-CREATE TABLE People (
+CREATE TABLE Person (
     Id int PRIMARY KEY,
     Firstname varchar(30),
     Lastname varchar(30),
 	Born date,
 	Employed bit not null,
-	CityName varchar(30)
+	CityId int foreign key references City(Id)
     
 );
 
 
-INSERT INTO Cities (Id, CityName, Numberofpeopple, PeopleEmployed, PeopleUnEmployed)
+INSERT INTO City (Id, CityName, Numberofpeopple, PeopleEmployed, PeopleUnEmployed)
 VALUES 
 (1, 'Osijek', '200000','140000','60000'),
 (2, 'Vukovar', '64000','42300', '21700'),
@@ -26,29 +26,29 @@ VALUES
 
 
 
-INSERT INTO People (Id, Firstname, Lastname, Born, Employed, CityName)
+INSERT INTO Person (Id, Firstname, Lastname, Born, Employed, CityId)
 VALUES 
-(1, 'Marko', 'Maric', '1985-01-01', 1, 'Split'),
-(2, 'Pero', 'Peric', '1976-07-07', 0, 'Zagreb'),
-(3, 'Luka', 'Lukic', '1994-01-07', 1, 'Vukovar'),
-(4, 'Ivan', 'Ivkovic', '1966-07-01', 0, 'Osijek'),
-(5, 'Matej', 'Matkovic', '1982-11-11', 1, 'Split'),
-(6, 'Marko', 'Marko', '1956-04-06', 0, 'Zagreb'),
-(7, 'Josip', 'Puskic', '1974-01-12', 1, 'Vukovar'),
-(8, 'Pero', 'Maric', '1996-02-11', 0, 'Osijek');
+(1, 'Marko', 'Maric', '1985-01-01', 1, (SELECT Id from City where CityName='Split')),
+(2, 'Pero', 'Peric', '1976-07-07', 0, (SELECT Id from City where CityName='Zagreb')),
+(3, 'Luka', 'Lukic', '1994-01-07', 1, (SELECT Id from City where CityName='Vukovar')),
+(4, 'Ivan', 'Ivkovic', '1966-07-01', 0, (SELECT Id from City where CityName='Osijek')),
+(5, 'Matej', 'Matkovic', '1982-11-11', 1, (SELECT Id from City where CityName='Split')),
+(6, 'Marko', 'Marko', '1956-04-06', 0, (SELECT Id from City where CityName='Zagreb')),
+(7, 'Josip', 'Puskic', '1974-01-12', 1, (SELECT Id from City where CityName='Vukovar')),
+(8, 'Pero', 'Maric', '1996-02-11', 0, (SELECT Id from City where CityName='Osijek'));
 
 
 CREATE VIEW PeopleByCity
 AS
-SELECT p.Firstname, p.Lastname, p.CityName
-FROM People p
-INNER JOIN Cities c ON c.CityName  = p.CityName
+SELECT p.Firstname, p.Lastname, c.CityName
+FROM Person p
+INNER JOIN City c ON c.Id  = p.CityId
 WHERE c.CityName IN ('Split');
 
 
-SELECT * FROM "People"
+SELECT * FROM "Person"
 
-SELECT * FROM "Cities"
+SELECT * FROM "City"
 
 SELECT LEN ('Ivkovic');
 SELECT LEFT('Ivkovic', 5);
