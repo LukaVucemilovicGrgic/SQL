@@ -1,37 +1,9 @@
-CREATE TABLE InfoBuyer(
+CREATE TABLE TicketType(
 
 	Id uniqueidentifier PRIMARY KEY not null,
-	NumberInSystem int,
-	DateOfCreation date,
-	PlaceOfCreation varchar(30)
-
-);
-
-CREATE TABLE Buyer(
-
-	Id uniqueidentifier PRIMARY KEY not null,
-	BuyerName varchar(30),
-	PersonalIdentificationNumber int,
-	FOREIGN KEY (Id) REFERENCES InfoBuyer(Id)
-);
-
-CREATE TABLE Bureau(
-
-	Id uniqueidentifier PRIMARY KEY not null,
-	AddressBureau varchar(30),
-	ContactNumber int,
-	Email varchar(30),
-	NumberOfBuyers int
-);
-
-CREATE TABLE BureauBuyer(
-
-	Id uniqueidentifier PRIMARY KEY not null,
-	AccountNumber int,
-	AmountOfMoney int,
-	TimeOfPurchase datetime,
-	BureauId uniqueidentifier FOREIGN KEY REFERENCES Bureau(Id) not null,
-	BuyerId uniqueidentifier FOREIGN KEY REFERENCES Buyer(Id) not null
+	DiscountSize dec(3, 2),
+	Name varchar(30),
+	
 );
 
 CREATE TABLE Ticket(
@@ -40,13 +12,43 @@ CREATE TABLE Ticket(
 	PriceE int,
 	NumberOfTicket int,
 	Expire datetime,
+	TicketTypeId uniqueidentifier FOREIGN KEY REFERENCES TicketType(Id) not null
+);
+
+CREATE TABLE Buyer(
+
+	Id uniqueidentifier PRIMARY KEY not null,
+	BuyerName varchar(30),
+	PersonalIdentificationNumber int,
+	TicketId uniqueidentifier FOREIGN KEY REFERENCES Ticket(Id) not null,
+);
+
+CREATE TABLE InfoBuyer(
+
+	Id uniqueidentifier PRIMARY KEY not null,
+	NumberInSystem int,
+	DateOfCreation date,
+	PlaceOfCreation varchar(30),
+	FOREIGN KEY (Id) REFERENCES Buyer(Id)
+);
+
+CREATE TABLE Bureau(
+
+	Id uniqueidentifier PRIMARY KEY not null,
+	AddressBureau varchar(30),
+	ContactNumber int,
+	Email varchar(30)
+);
+
+
+CREATE TABLE BureauBuyer(
+
+	Id uniqueidentifier PRIMARY KEY not null,
+	AccountNumber int,
+	AmountOfMoney int,
+	TimeOfPurchase datetime,
+	NumberOfBuyers int,
+	BureauId uniqueidentifier FOREIGN KEY REFERENCES Bureau(Id) not null,
 	BuyerId uniqueidentifier FOREIGN KEY REFERENCES Buyer(Id) not null
 );
 
-CREATE TABLE TypeOfTicket(
-
-	Id uniqueidentifier PRIMARY KEY not null,
-	DiscountSize dec(3, 2),
-	TypeT varchar(30),
-	TicketId uniqueidentifier FOREIGN KEY REFERENCES Ticket(Id) not null
-);
