@@ -52,3 +52,89 @@ CREATE TABLE BureauBuyer(
 	BuyerId uniqueidentifier FOREIGN KEY REFERENCES Buyer(Id) not null
 );
 
+
+
+
+--DECLARE
+
+
+DECLARE @Id uniqueidentifier;
+SET @Id=newid();
+
+
+--INSERT
+
+INSERT INTO TicketType (Id, DiscountSize, Name)
+VALUES 
+
+(newid(), '0.25', 'Ucenicka'),
+(newid(), '0', 'Radnicka'),
+(newid(), '0.50', 'Umirovljenicka'),
+(newid(), '0.30', 'Studenska');
+
+INSERT INTO Ticket (Id, PriceE, NumberOfTicket, Expire, TicketTypeId)
+VALUES 
+(newid(), '30', '2359', '2023-05-03', (SELECT Id FROM TicketType WHERE Name = 'Ucenicka')),
+(newid(), '40', '3451', '2023-04-03', (SELECT Id FROM TicketType WHERE Name = 'Radnicka')),
+(newid(), '20', '9521', '2023-06-03', (SELECT Id FROM TicketType WHERE Name = 'Umirovljenicka')),
+(newid(), '28', '5639', '2023-03-03', (SELECT Id FROM TicketType WHERE Name = 'Studenska'));
+
+
+DECLARE @Id1 uniqueidentifier;
+SET @Id1=newid();
+
+DECLARE @Id2 uniqueidentifier;
+SET @Id2=newid();
+
+DECLARE @Id3 uniqueidentifier;
+SET @Id3=newid();
+
+DECLARE @Id4 uniqueidentifier;
+SET @Id4=newid();
+
+INSERT INTO Buyer (Id, BuyerName, PersonalIdentificationNumber, TicketId)
+VALUES 
+
+(@Id1, 'Luka', '546000236', (SELECT Id FROM Ticket WHERE PriceE = 30)),
+(@Id2, 'Marko', '956000455', (SELECT Id FROM Ticket WHERE PriceE = 40)),
+(@Id3, 'Ivan', '239000426', (SELECT Id FROM Ticket WHERE PriceE = 20)),
+(@Id4, 'Matej', '116000553', (SELECT Id FROM Ticket WHERE PriceE = 28));
+
+
+INSERT INTO InfoBuyer (Id, NumberInSystem, DateOfCreation, PlaceOfCreation)
+VALUES 
+
+(@Id1, '2389', '2023-02-03', 'Osijek'),
+(@Id2, '1327', '2022-12-05', 'Split'),
+(@Id3, '4289', '2021-11-29', 'Zagreb'),
+(@Id4, '7531', '2020-09-18', 'Rijeka');
+
+
+INSERT INTO Bureau (Id, AddressBureau, ContactNumber, Email)
+VALUES 
+
+(newid(), 'Luka', '0986582169', 'luka.poskic@gmail.com'),
+(newid(), 'Marko', '0919886611', 'm.tokic@hotmail.com'),
+(newid(), 'Ivan', '0952264138', 'ivan.ivan@gmail.com'),
+(newid(), 'Matej', '0983359961', 'maaaaatej_88@gmail.com');
+
+
+INSERT INTO BureauBuyer (Id, AccountNumber, AmountOfMoney, TimeOfPurchase, NumberOfBuyers, BureauId, BuyerId)
+VALUES 
+
+(newid(), '326', '38', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0986582169'), (SELECT Id FROM Buyer WHERE BuyerName = 'Luka')),
+(newid(), '4589', '50', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0919886611'), (SELECT Id FROM Buyer WHERE BuyerName = 'Marko')),
+(newid(), '10562', '25', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0952264138'), (SELECT Id FROM Buyer WHERE BuyerName = 'Ivan')),
+(newid(), '842', '35', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0983359961'), (SELECT Id FROM Buyer WHERE BuyerName = 'Matej'));
+
+
+
+
+
+
+
+
+
+--TEST
+SELECT * FROM InfoBuyer;
+SELECT * FROM Buyer;
