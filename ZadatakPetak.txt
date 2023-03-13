@@ -122,19 +122,10 @@ VALUES
 INSERT INTO BureauBuyer (Id, AccountNumber, AmountOfMoney, TimeOfPurchase, NumberOfBuyers, BureauId, BuyerId)
 VALUES 
 
-(newid(), '326', '38', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0986582169'), (SELECT Id FROM Buyer WHERE BuyerName = 'Luka')),
-(newid(), '4589', '50', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0919886611'), (SELECT Id FROM Buyer WHERE BuyerName = 'Marko')),
-(newid(), '10562', '25', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0952264138'), (SELECT Id FROM Buyer WHERE BuyerName = 'Ivan')),
-(newid(), '842', '35', '2023-02-03', '1', (SELECT Id FROM Bureau WHERE ContactNumber = '0983359961'), (SELECT Id FROM Buyer WHERE BuyerName = 'Matej'));
+(newid(), '326', '38', '2023-02-03', '1', (SELECT TOP 1 Id FROM Bureau WHERE ContactNumber = '0986582169'), (SELECT TOP 1 Id FROM Buyer WHERE BuyerName = 'Luka')),
+(newid(), '4589', '50', '2023-02-03', '1', (SELECT TOP 1 Id FROM Bureau WHERE ContactNumber = '0919886611'), (SELECT TOP 1 Id FROM Buyer WHERE BuyerName = 'Marko')),
+(newid(), '10562', '25', '2023-02-03', '1', (SELECT TOP 1 Id FROM Bureau WHERE ContactNumber = '0952264138'), (SELECT TOP 1 Id FROM Buyer WHERE BuyerName = 'Ivan')),
+(newid(), '842', '35', '2023-02-03', '1', (SELECT TOP 1 Id FROM Bureau WHERE ContactNumber = '0983359961'), (SELECT TOP 1 Id FROM Buyer WHERE BuyerName = 'Matej'));
 
 
-
-
-
-
-
-
-
---TEST
-SELECT * FROM InfoBuyer;
-SELECT * FROM Buyer;
+SELECT * FROM BureauBuyer
