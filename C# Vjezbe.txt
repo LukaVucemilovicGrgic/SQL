@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FirstConsoleApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*Console.WriteLine("Hello World");
+
+              string name = "Luka";
+              Console.WriteLine(name);
+
+              int a, b, c, d;
+              a = 1;
+              b = 6;
+              c = 7;
+              d = 8;
+
+
+              bool isActive = false;
+
+              if(isActive)
+              {
+                  Console.WriteLine(name);
+              }
+              else
+              {
+                  string secoundName = "Ana";
+                  Console.WriteLine(secoundName);
+              }
+            */
+
+            /*   Console.WriteLine("Koji je danas dan?\n");
+                 string input = Console.ReadLine();
+
+
+                 if(input.Equals("ponedjeljak"))
+                 {
+                     Console.WriteLine("Tocan odgovor");
+                 }
+                 else
+                 {
+                     Console.WriteLine("Nazalost je ponedjeljak");
+                 }
+            */
+
+          //string testCharacter=Console.ReadLine();
+
+
+            int testCharacter = Int32.Parse(Console.ReadLine());
+            Console.WriteLine(testCharacter);
+
+            Console.ReadLine(); 
+        }
+    }
+}
